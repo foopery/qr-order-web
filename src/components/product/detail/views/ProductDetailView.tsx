@@ -10,7 +10,7 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
 
   return (
     /* Back Div */
-    <div className={`w-full h-auto flex flex-col`}>
+    <div className={`w-full h-auto flex flex-col bg-white`}>
       <div>
         {/* Top Div */}
         <div className={`fixed top-0 left-0 right-0 z-10 flex flex-col w-full h-auto border-b bg-white shadow-md`}>
@@ -70,11 +70,11 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
             {v.type === 1 ? (
               <div className={`mt-2 w-full h-auto bg-white`} key={i}>
                 <div className={`flex flex-col`}>
-                  <div className={`flex items-center justify-start gap-[15rem] p-3 w-full h-[3rem]`}>
+                  <div className={`flex items-center justify-between gap-[15rem] p-3 w-full h-[3rem]`}>
                     <span className={`text-lg font-semibold`}>{v.title}</span>
                     <div className={`flex justify-center items-center w-[2.5rem]  h-[1.5rem] rounded-full text-xs bg-sky-100 text-blue-500 font-semibold`}>필수</div>
                   </div>
-                  <div className={`flex w-full px-3`}>
+                  <div className={`flex w-full px-4`}>
                     <span className={`text-xs text-gray-500`}>최대 1개 선택</span>
                   </div>
                 </div>
@@ -102,11 +102,11 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
             ) : (
               <div className={`mt-2 w-full h-auto bg-white`} key={i}>
                 <div className={`flex flex-col`}>
-                  <div className={`flex items-center justify-start gap-[15rem] p-3 w-full h-[3rem]`}>
+                  <div className={`flex items-center justify-between gap-[15rem] p-3 w-full h-[3rem]`}>
                     <span className={`text-lg font-semibold`}>{v.title}</span>
                     <div className={`flex justify-center items-center w-[2.5rem]  h-[1.5rem] rounded-full text-xs bg-gray-200 text-gray-500 font-semibold`}>선택</div>
                   </div>
-                  <div className={`flex w-full px-3`}>
+                  <div className={`flex w-full px-4`}>
                     <span className={`text-xs text-gray-500`}>최소 1개 선택</span>
                   </div>
                   {v.options.map((options) => (
