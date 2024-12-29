@@ -1,7 +1,6 @@
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Product from "./components/product/gets/Product";
-import { BrowserRouter } from "react-router-dom";
+import Router from "../Router.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,9 +14,7 @@ function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Product />
-        </BrowserRouter>
+        <Router />
       </QueryClientProvider>
     </div>
   );
