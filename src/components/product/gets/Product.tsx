@@ -1,5 +1,5 @@
 import ProductView from "./views/ProductView";
-import { productQuery } from "./_core/product.query";
+import { productQuery } from "../_core/product.query";
 import ProductLoadingView from "./views/ProductLoadingView";
 import ProductErrorView from "./views/ProductErrorView";
 
