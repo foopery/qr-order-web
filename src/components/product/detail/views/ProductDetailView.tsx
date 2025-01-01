@@ -7,6 +7,9 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
   console.log(data);
 
   const [count, setCount] = useState(1);
+  /* 최종결제 계산 */
+  const totalPrice = data.isDiscount && data.discountPrice !== "0" ? Number(data.mainPrice) - Number(data.discountPrice) : Number(data.mainPrice);
+  const totalAmount = totalPrice * count;
 
   return (
     /* Back Div */
@@ -150,14 +153,20 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
 
       {/* footer */}
       <div className={`flex w-full  h-[5rem] bg-white`}>
-        <div className={`flex justify-between p-5 w-full items-center`}>
-          {/* 장바구니 담기 div */}
-          <div className={`flex items-center justify-center`}>
-            <button className={`w-[10rem] h-[2.5rem] bg-white rounded-md border border-[#4285f4] text-[#4285f4] font-bold`}>장바구니 담기</button>
+        <div className={`flex  p-2 w-full items-center`}>
+          <div className={`flex flex-col  items-start justify-center h-[2.5rem] w-full text-left pl-2`}>
+            <span className={`text-xs text-gray-500 w-full`}>결제 최종금액</span>
+            <span className={`text-sm text-gray-800 w-full`}>{totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
           </div>
-          {/* 바로주문 div */}
-          <div className={`flex items-center justify-center`}>
-            <button className={`w-[10rem] h-[2.5rem] bg-[#4285f4] rounded-md text-white font-bold`}>바로주문</button>
+          <div className={`flex gap-3 w-full`}>
+            {/* 장바구니 담기 div */}
+            <div className={`flex`}>
+              <button className={`w-[8.5rem] h-[2.5rem] bg-white rounded-md border border-[#4285f4] text-[#4285f4] font-bold`}>장바구니 담기</button>
+            </div>
+            {/* 바로주문 div */}
+            <div className={`flex`}>
+              <button className={`w-[8.5rem] h-[2.5rem] bg-[#4285f4] rounded-md text-white font-bold`}>바로주문</button>
+            </div>
           </div>
         </div>
       </div>
