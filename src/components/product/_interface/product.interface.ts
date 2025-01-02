@@ -50,6 +50,7 @@ export interface IProductData_Model {
     id: number;
     groupId: number;
     value: string;
+    price: string;
     createdAt: string;
     updatedAt: string | null;
   }[];
