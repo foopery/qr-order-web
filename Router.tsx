@@ -11,7 +11,7 @@ export default function Router() {
       key: "product",
     },
     {
-      path: "/product/detail/:id", // 상품 상세페이지
+      path: "/product/:id", // 상품 상세페이지
       element: <ProductDetail />,
       key: "product/detail/:id",
     },
