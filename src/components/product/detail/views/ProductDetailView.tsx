@@ -4,12 +4,25 @@ import { SlArrowLeft } from "react-icons/sl";
 import { useState } from "react";
 
 export default function ProductDetailView({ data }: { data: IProductModel }) {
-  console.log(data);
-
+  /* 수량 상태 */
   const [count, setCount] = useState(1);
+  /* 옵션 상태 */
+  const [selectOptions, setSelectOptions] = useState<number[]>([]);
   /* 최종결제 계산 */
   const totalPrice = data.isDiscount && data.discountPrice !== "0" ? Number(data.mainPrice) - Number(data.discountPrice) : Number(data.mainPrice);
-  const totalAmount = totalPrice * count;
+  /* 옵션합 계산 */
+  const optionsPrice = selectOptions.reduce((acc, price) => acc + price, 0);
+  /* 최종수량 + 옵션 가격 합산 */
+  const totalAmount = totalPrice * count + optionsPrice;
+
+  /* 옵션을 선택했을 때와 해제했을 때의 함수  */
+  const optionsHandler = (price: number, isSelected: boolean) => {
+    if (isSelected) {
+      setSelectOptions((value) => [...value, price]);
+    } else {
+      setSelectOptions((value) => value.filter((v) => v !== price));
+    }
+  };
 
   return (
     /* Back Div */
@@ -83,14 +96,21 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
                 </div>
                 {v.options.map((options) => (
                   <div className={`flex  justify-starts items-center  p-3`} key={options.id}>
-                    <input type="radio" id={`option-${v.id}-${options.id}`} name={`group-${v.id}`} className={`hidden`} />
+                    <input
+                      type="radio"
+                      id={`option-${v.id}-${options.id}`}
+                      name={`group-${v.id}`}
+                      className={`hidden`}
+                      onChange={() => optionsHandler(Number(options.price), true)}
+                    />
                     <label htmlFor={`option-${v.id}-${options.id}`} className={`flex items-center cursor-pointer relative w-full gap-2`}>
                       <div className={`w-[1rem] h-[1rem]  rounded-full bg-white border-2 flex items-center justify-center`}>
                         <div className={`w-[0.5rem] h-[0.5rem] justify-center items-center bg-gray-600 rounded-md hidden`} id="checkmark"></div>
                       </div>
-                      <div className={``}>
-                        <div className={`flex `}>
+                      <div className={`w-full`}>
+                        <div className={`flex justify-between`}>
                           <span className={`ml-2`}>{options.value}</span>
+                          <span className={`font-semibold mr-2`}>+{options.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                         </div>
                       </div>
                     </label>
@@ -115,13 +135,21 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
                   {v.options.map((options) => (
                     <>
                       <div className={`flex  justify-starts items-center p-3`} key={options.id}>
-                        <input type="checkbox" id={`option-checkbox-${options.id}`} className={`hidden`} />
+                        <input
+                          type="checkbox"
+                          id={`option-checkbox-${options.id}`}
+                          className={`hidden`}
+                          onChange={(e) => optionsHandler(Number(options.price), e.target.checked)}
+                        />
                         <label htmlFor={`option-checkbox-${options.id}`} className={`flex items-center cursor-pointer relative w-full gap-2`}>
                           <div className={`w-[1.1rem] h-[1.1rem] rounded-md bg-white border-2 flex items-center justify-center`}>
                             <div className={`w-[0.5rem] h-[0.5rem] bg-gray-600 rounded-md hidden`} id="checkmark"></div>
                           </div>
-                          <div className={``}>
-                            <span className={`ml-2`}>{options.value}</span>
+                          <div className={`w-full`}>
+                            <div className={`flex justify-between`}>
+                              <span className={`ml-2`}>{options.value}</span>
+                              <span className={`font-semibold mr-2`}>+{options.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                            </div>
                           </div>
                         </label>
                         <style>{`
@@ -154,7 +182,7 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
       {/* footer */}
       <div className={`flex w-full  h-[5rem] bg-white`}>
         <div className={`flex  p-2 w-full items-center`}>
-          <div className={`flex flex-col  items-start justify-center h-[2.5rem] w-full text-left pl-2`}>
+          <div className={`flex flex-col  items-start justify-center h-[2.5rem] w-full text-left `}>
             <span className={`text-xs text-gray-500 w-full`}>결제 최종금액</span>
             <span className={`text-sm text-gray-800 w-full`}>{totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
           </div>
