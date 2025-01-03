@@ -13,7 +13,7 @@ export default function ProductDetailView({ data }: { data: IProductModel }) {
   /* 옵션합 계산 */
   const optionsPrice = selectOptions.reduce((acc, price) => acc + price, 0);
   /* 최종수량 + 옵션 가격 합산 */
-  const totalAmount = totalPrice * count + optionsPrice;
+  const totalAmount = (totalPrice + optionsPrice) * count;
 
   /* 옵션을 선택했을 때와 해제했을 때의 함수  */
   const optionsHandler = (price: number, isSelected: boolean) => {
