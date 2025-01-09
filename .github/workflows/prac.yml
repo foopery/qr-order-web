@@ -18,7 +18,8 @@ jobs:
           cd /home/runner/work/qr-order-web/qr-order-web
           mkdir -p GGG
           cd GGG
-          pwd
+          echo "inhanbyeol94@gmail.com" > abcd.txt
+          cat GGG/abcd.txt
           
 
 
