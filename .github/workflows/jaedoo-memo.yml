@@ -21,5 +21,8 @@ jobs:
       - name: pwd
         run: pwd
 
+      - name: ls
+        run:  ls
+
       - name: console
         run: cat GGG/abcd.txt
