@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: make dir
         run:
-          mkdir -p GGG/abcd.txt
+          mkdir -p GGG
 
       - name: create file
         run: echo "hello jaedoo!" > GGG/abcd.txt
