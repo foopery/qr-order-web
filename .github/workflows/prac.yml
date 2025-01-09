@@ -13,17 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: cd
-        run: cd /home/runner/work/qr-order-web/qr-order-web
-
-      - name: create mkdir
-        run: mkdir -p /home/runner/work/qr-order-web/qr-order-web/GGG
-
       - name: mkdir/cd
         run: |
           cd /home/runner/work/qr-order-web/qr-order-web
           mkdir -p GGG
-          cd /home/runner/work/qr-order-web/qr-order-web/GGG
+          cd GGG
           pwd
+          
 
 
