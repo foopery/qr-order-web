@@ -18,5 +18,8 @@ jobs:
       - name: create file
         run: echo "hello jaedoo!" > GGG/abcd.txt
 
+      - name: pwd
+        run: pwd
+
       - name: console
         run: cat GGG/abcd.txt
