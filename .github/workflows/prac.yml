@@ -16,10 +16,11 @@ jobs:
       - name: cd
         run: cd /home/runner/work/qr-order-web/qr-order-web
 
-      - name: mkdir
-        run: mkdir -p GGG
+      - name: create mkdir
+        run: mkdir -p /home/runner/work/qr-order-web/qr-order-web/GGG
 
       - name: mkdir/cd
         run: cd /home/runner/work/qr-order-web/qr-order-web/GGG
+             pwd
 
 
