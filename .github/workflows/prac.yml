@@ -1,0 +1,17 @@
+name: test-prac
+on :
+  push:
+    branches: ['develop']
+permissions :
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: pwd
+        run: pwd
