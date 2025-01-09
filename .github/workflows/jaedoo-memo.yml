@@ -1,0 +1,22 @@
+name: GGG
+on :
+  push:
+    branches: ['develop']
+
+permissions :
+  contents: read
+  packages: write
+
+jobs:
+  build :
+    runs-on: ubuntu-latest
+    steps:
+      - name: make dir
+        run:
+          mkdir -p GGG/abcd.txt
+
+      - name: create file
+        run: echo "hello jaedoo!" > GGG/abcd.txt
+
+      - name: console
+        run: cat GGG/abcd.txt
