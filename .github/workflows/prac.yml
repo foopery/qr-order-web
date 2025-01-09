@@ -20,7 +20,8 @@ jobs:
         run: mkdir -p /home/runner/work/qr-order-web/qr-order-web/GGG
 
       - name: mkdir/cd
-        run:  mkdir -p /home/runner/work/qr-order-web/qr-order-web/GGG
+        run: |  
+          mkdir -p /home/runner/work/qr-order-web/qr-order-web/GGG
           cd /home/runner/work/qr-order-web/qr-order-web/GGG
           pwd
 
