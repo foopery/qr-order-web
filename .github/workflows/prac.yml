@@ -19,7 +19,8 @@ jobs:
           mkdir -p GGG
           cd GGG
           echo "inhanbyeol94@gmail.com" > abcd.txt
-          cat abcd.txt
+          JAEDOO=abcd.txt
+          cat JAEDOO
           
 
 
