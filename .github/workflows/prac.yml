@@ -19,8 +19,8 @@ jobs:
           mkdir -p GGG
           cd GGG
           echo "inhanbyeol94@gmail.com" > abcd.txt
-          export JAEDOO=$JAEDOO:abcd.txt
-          cat JAEDOO
+          export JAEDOO=$(cat abcd.txt)
+          echo JAEDOO
           
 
 
