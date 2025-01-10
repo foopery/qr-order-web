@@ -20,7 +20,7 @@ jobs:
           cd GGG
           echo "inhanbyeol94@gmail.com" > abcd.txt
           export JAEDOO=$(cat abcd.txt)
-          echo JAEDOO
+          echo $JAEDOO
           
 
 
