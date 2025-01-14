@@ -67,7 +67,7 @@ export default function ProductView({
       <div className={`flex flex-col w-full pt-[18vh] py-1.5`}>
         {/* 이미지와 내용들을 나누는 div */}
         {data.map((v, i) => (
-          <div className={`flex border-b-2 w-full h-[9rem] pt-1.5 cursor-pointer`} onClick={() => navigate(`/product/detail/${v.id}`)} key={i}>
+          <div className={`flex border-b-2 w-full h-[9rem] pt-1.5 cursor-pointer`} onClick={() => navigate(`/product/${v.id}`)} key={i}>
             {/* 이미지 영역*/}
             <div className={`w-[10rem] h-[7rem] flex justify-start mt-1.5 px-2 pt-4 items-center`}>
               <img className={`w-full h-[7rem] mb-2 rounded-lg`} src={v.thumbnailUrl} />
