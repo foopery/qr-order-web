@@ -24,3 +24,5 @@ jobs:
           echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u ${{github.actor}} --password-stdin
           docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
           docker ps
+          docker stop ghcr.io/foopery/qr-order-web/qr-order-web:latest
+          docker ps
