@@ -13,21 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: ssh
-        run: |
-          echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
-          chmod 600 ~/jaedoo.pem
 
-      - name: make .ssh dir
-        run: |
-          mkdir -p ~/.ssh
-
-      - name: key add
-        run: |
-          ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
 
       - name: Pipe-line
         run: |
+          echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
+          chmod 600 ~/jaedoo.pem
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
           ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }} 'ls'
           
           
