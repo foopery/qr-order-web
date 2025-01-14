@@ -16,7 +16,7 @@ jobs:
       - name: ssh
         run: |
           echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
-          chmod 400 ~/jaedoo.pem
+          chmod 600 ~/jaedoo.pem
 
       - name: make .ssh dir
         run: |
