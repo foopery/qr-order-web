@@ -1,8 +1,9 @@
 name: EC2-ubuntu
-on :
+on:
   push:
     branches: ['develop']
-permissions :
+
+permissions:
   contents: read
   packages: write
 
@@ -13,14 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-
-
       - name: Pipe-line
         run: |
-          echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
+          echo "${{ secrets.PEM_KEY }}" > ~/jaedoo.pem
           chmod 600 ~/jaedoo.pem
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
-          ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }} 'ls'
-          
-          
+          ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem ubuntu@${{ secrets.PUBLIC_DNS }} 'ls'
