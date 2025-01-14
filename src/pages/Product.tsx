@@ -1,7 +1,7 @@
-import ProductView from "./views/ProductView";
-import { productQuery } from "../_core/product.query";
-import ProductLoadingView from "./views/ProductLoadingView";
-import ProductErrorView from "./views/ProductErrorView";
+import ProductView from "../components/product/gets/views/ProductView.tsx";
+import { productQuery } from "../components/product/_core/product.query.ts";
+import ProductLoadingView from "../components/product/gets/views/ProductLoadingView.tsx";
+import ProductErrorView from "../components/product/gets/views/ProductErrorView.tsx";
 
 export default function Product() {
   const { data, status, fetchNextPage, hasNextPage, isFetchingNextPage } = productQuery.useGets();
