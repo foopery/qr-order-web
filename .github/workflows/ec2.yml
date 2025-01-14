@@ -18,6 +18,10 @@ jobs:
           echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
           chmod 400 ~/jaedoo.pem
 
+      - name: Create .ssh directory
+        run: |
+          mkdir -p ~/.ssh
+
       - name: key add
         run: |
           ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
