@@ -13,7 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: ssh
+        run: |
+          echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
+          chmod 400 ~/jaedoo.pem
+
       - name: Pipe-line
         run: |
-          pwd
+          ssh -i ~/jaedoo.pem haemin@${{secrets.PUBLIC_DNS}} 'ls'
+          
           
