@@ -7,7 +7,7 @@ export const productApi = {
       params: {
         limit: "10",
         page,
-        sort: "CREATED_AT:DESC",
+        sort: "CREATED_AT:ASC",
       },
     });
     return data;
