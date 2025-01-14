@@ -18,7 +18,7 @@ jobs:
           echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
           chmod 400 ~/jaedoo.pem
 
-      - name: Create .ssh directory
+      - name: make .ssh dir
         run: |
           mkdir -p ~/.ssh
 
