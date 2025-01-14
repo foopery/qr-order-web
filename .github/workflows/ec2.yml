@@ -18,8 +18,12 @@ jobs:
           echo "${{secrets.PEM_KEY}}" > ~/jaedoo.pem
           chmod 400 ~/jaedoo.pem
 
+      - name: key add
+        run: |
+          ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
+
       - name: Pipe-line
         run: |
-          ssh -i ~/jaedoo.pem haemin@${{secrets.PUBLIC_DNS}} 'ls'
+          ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }} 'ls'
           
           
