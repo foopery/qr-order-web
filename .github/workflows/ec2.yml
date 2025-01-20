@@ -31,6 +31,7 @@ jobs:
           docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
           docker restart qr-order-web-container
           docker logs qr-order-web-container
+          docker ps
 
           
           
