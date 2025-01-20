@@ -22,13 +22,13 @@ jobs:
           ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
           ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }} << 'EOF'
             echo "Logging in to Docker..."
-            echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin || { echo "Docker login failed"; exit 1; }
           
             echo "Pulling the latest image..."
-            docker pull ghcr.io/foopery/qr-order-web/qr-order-web:latest
+            docker pull ghcr.io/foopery/qr-order-web/qr-order-web:latest || { echo "Docker pull failed"; exit 1; }
           
             echo "Starting new container..."
-            docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
+            docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest || { echo "Docker run failed"; exit 1; }
           
             echo "Current running containers:"
             docker ps
