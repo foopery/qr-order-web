@@ -20,20 +20,6 @@ jobs:
           chmod 600 ~/jaedoo.pem
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
-          ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }} << 'EOF'
-            set -e  # 오류 발생 시 즉시 종료
-            echo "Logging in to Docker..."
+          ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }} 
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            echo "Docker login complete."
-
-            echo "Pulling the latest image..."
-            docker pull ghcr.io/foopery/qr-order-web/qr-order-web:latest
-            echo "Image pulled successfully."
-
-            echo "Starting new container..."
-            docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
-            echo "Container started successfully."
-
-            echo "Current running containers:"
-            docker ps
-          EOF
+           
