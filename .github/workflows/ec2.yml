@@ -23,6 +23,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }}
           echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u ${{github.actor}} --password-stdin
           docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
-          docker ps
+          if [ "$(docker ps -q -f name=qr-order-web-container)" ]; then
           docker stop qr-order-web-container
+          docker rm qr-order-web-container
+          fi
+          docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
           docker ps
