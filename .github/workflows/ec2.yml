@@ -21,5 +21,5 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.PUBLIC_DNS }} >> ~/.ssh/known_hosts
           ssh -o StrictHostKeyChecking=no -i ~/jaedoo.pem haemin@${{ secrets.PUBLIC_DNS }}
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin 
            
