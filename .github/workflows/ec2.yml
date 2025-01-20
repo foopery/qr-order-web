@@ -29,6 +29,8 @@ jobs:
             docker stop qr-order-web-container
             docker rm qr-order-web-container
           fi
+          sudo systemctl restart nginx
+          docker restart qr-order-web-container
           docker run -d --name qr-order-web-container -p 80:80 ghcr.io/foopery/qr-order-web/qr-order-web:latest
           docker logs qr-order-web-container
 
